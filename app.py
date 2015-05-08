@@ -72,9 +72,10 @@ def test():
         dic[question] = question.answers.all()
     return render_template('test.html', questions=dic)
 
+
 @app.route('/about')
 def about():
-    render_template('about.html')
+    return render_template('about.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
