@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Hello</h1>
+    </div>
+    {% for i in range(questions|length) %}
+        <div class="col-sm-8 col-sm-offset-2">
+            {% if answers[i][1] %}
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ questions[i].title }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ answers[i][0][0].answer }} <br/>
+                        {{ answers[i][0][1].answer }} <br/>
+                        {{ answers[i][0][2].answer }} <br/>
+                    </div>
+                </div>
+            {% else %}
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ questions[i].title }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {% if answers[i][0][0].response %}
+                            <span class="label label-success"> {{ answers[i][0][0].answer }} </span> <br/>
+                        {% else %}
+                            {{ answers[i][0][0].answer }} <br/>
+                        {% endif %}
+                        {% if answers[i][0][1].response %}
+                            <span class="label label-success"> {{ answers[i][0][1].answer }} </span> <br/>
+                        {% else %}
+                            {{ answers[i][0][1].answer }} <br/>
+                        {% endif %}
+                        {% if answers[i][0][2].response %}
+                            <span class="label label-success"> {{ answers[i][0][2].answer }} </span> <br/>
+                        {% else %}
+                            {{ answers[i][0][2].answer }} <br/>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% endif %}
+
+        </div>
+    {% endfor %}
+</div>
+
+</div>
+<script src="../static/js/jquery-2.1.4.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -46,21 +46,27 @@ def hello_world():
 def test():
 
     if request.method == 'POST':
-
         score = 0
-        for i in range(87):
+        questions = []
+        answers = []
+        for i in range(20):
             try:
                 answer_id = request.form[str(i)]
                 answer = Answer.query.get(answer_id)
                 question = answer.question
                 if answer.response:
                     score +=1
+                    questions.append(question)
+                    answers.append((question.answers.all(), True))
+                else:
+                    questions.append(question)
+                    answers.append((question.answers.all(), False))
             except KeyError:
                 print "Not key"
-        print score
-        return "done"
-
-
+                question = Question.query.get(request.form["a" + str(i)])
+                questions.append(question)
+                answers.append((question.answers.all(), False))
+        return render_template('results.html', questions=questions, answers=answers)
 
     dic = {}
     for question in Question.query.all()[:20]:
