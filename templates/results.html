@@ -10,6 +10,10 @@
     <div class="jumbotron">
         <h1>Hello</h1>
     </div>
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="alert alert-success" role="alert">Hello</div>
+    </div>
+
     {% for i in range(questions|length) %}
         <div class="col-sm-8 col-sm-offset-2">
             {% if answers[i][1] %}

@@ -44,7 +44,6 @@ def hello_world():
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
-
     if request.method == 'POST':
         score = 0
         questions = []
@@ -66,7 +65,7 @@ def test():
                 question = Question.query.get(request.form["a" + str(i)])
                 questions.append(question)
                 answers.append((question.answers.all(), False))
-        return render_template('results.html', questions=questions, answers=answers)
+        return render_template('results.html', questions=questions, answers=answers, score=score)
 
     dic = {}
     for question in Question.query.all()[:20]:
