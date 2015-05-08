@@ -1,0 +1,72 @@
+from flask import Flask, render_template, request
+from flask.ext.sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
+
+
+class Question(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200))
+
+    def __init__(self, title):
+        self.title = title
+
+    def __repr__(self):
+        return '<Question %r>' % self.title
+
+
+class Answer(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    question_id = db.Column(db.Integer, db.ForeignKey('question.id'))
+    question = db.relationship('Question', backref=db.backref('answers', lazy='dynamic'))
+    answer = db.Column(db.String(100))
+    response = db.Column(db.Boolean)
+
+    def __init__(self, question, answer, response=False):
+        self.question = question
+        self.answer = answer
+        self.response = response
+
+    def __repr__(self):
+        return '<Answer %r>' % self.answer
+
+
+# Create the database tables.
+db.create_all()
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+
+    if request.method == 'POST':
+
+        score = 0
+        for i in range(87):
+            try:
+                answer_id = request.form[str(i)]
+                answer = Answer.query.get(answer_id)
+                question = answer.question
+                if answer.response:
+                    score +=1
+            except KeyError:
+                print "Not key"
+        print score
+        return "done"
+
+
+
+    dic = {}
+    for question in Question.query.all()[:20]:
+        dic[question] = question.answers.all()
+    return render_template('test.html', questions=dic)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
