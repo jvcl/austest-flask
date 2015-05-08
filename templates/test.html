@@ -11,33 +11,44 @@
         <h1>Hello</h1>
     </div>
     <form method="post" action="/test">
-    {% set counter = 0 %}
-    {% for question, answers in questions.items() %}
-        <div class="col-sm-8 col-sm-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ counter + 1 }}. {{ question.title }}</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="radio">
-                        <label><input type="radio" name="{{ counter }}" value="{{ answers[0].id }}"> {{ answers[0].answer }}</label>
+        {% set counter = 0 %}
+        {% for question, answers in questions.items() %}
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ counter + 1 }}. {{ question.title }}</h3>
                     </div>
-                    <div class="radio">
-                        <label><input type="radio" name="{{ counter }}" value="{{ answers[1].id }}"> {{ answers[1].answer }}</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="{{ counter }}" value="{{ answers[2].id }}"> {{ answers[2].answer }}</label>
+                    <div class="panel-body">
+                        <div class="radio">
+                            <label><input type="radio" name="{{ counter }}"
+                                          value="{{ answers[0].id }}"> {{ answers[0].answer }}</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="{{ counter }}"
+                                          value="{{ answers[1].id }}"> {{ answers[1].answer }}</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="{{ counter }}"
+                                          value="{{ answers[2].id }}"> {{ answers[2].answer }}</label>
+                        </div>
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="a{{ counter }}" value="{{ question.id }}">
+            {% set counter = counter + 1 %}
+        {% endfor %}
+        <div class="row">
+            <div class="col-sm-8 col-md-offset-2" style="text-align: right">
+                <input type="submit" value="submit" class="btn btn-success">
+            </div>
         </div>
-        <input type="hidden" name="a{{ counter }}" value="{{ question.id }}">
-        {% set counter = counter + 1 %}
-    {% endfor %}
-
-    <input type="submit" value="submit">
     </form>
+    <div class="row">
+        <footer class="modal-footer" style="margin-top: 20px;"></footer>
+    </div>
 </div>
+
+
 <script src="../static/js/jquery-2.1.4.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 </body>

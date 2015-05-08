@@ -12,17 +12,17 @@
     </div>
     <div class="col-sm-8 col-sm-offset-2">
 
+
         {% if score > 14 %}
-            <div class="alert alert-success" role="alert" style="align-content: center"><strong>Great!</strong>Your score is {{ score }}</div>
+            <div class="alert alert-success" role="alert" style="align-content: center"><strong>Great!</strong>Your
+                score is {{ score }}</div>
         {% else %}
             <div class="alert alert-danger" role="alert" style="text-align: center"><h3>Not to good!</h3>
-                <strong>Your score is {{ score }}</strong>, you need at least 15<br />
-                Check the right answers below <br />
+                <strong>Your score is {{ score }}</strong>, you need at least 15<br/>
+                Check the right answers below <br/>
 
             </div>
         {% endif %}
-
-
     </div>
 
     {% for i in range(questions|length) %}
@@ -45,17 +45,20 @@
                     </div>
                     <div class="panel-body">
                         {% if answers[i][0][0].response %}
-                            <span style="background-color: #dff0d8; color: #3c763d;"><strong>{{ answers[i][0][0].answer }}</strong></span> <br/>
+                            <span style="background-color: #dff0d8; color: #3c763d;"><strong>{{ answers[i][0][0].answer }}</strong></span>
+                            <br/>
                         {% else %}
                             {{ answers[i][0][0].answer }} <br/>
                         {% endif %}
                         {% if answers[i][0][1].response %}
-                            <span style="background-color: #dff0d8; color: #3c763d;"><strong>{{ answers[i][0][1].answer }}</strong></span> <br/>
+                            <span style="background-color: #dff0d8; color: #3c763d;"><strong>{{ answers[i][0][1].answer }}</strong></span>
+                            <br/>
                         {% else %}
                             {{ answers[i][0][1].answer }} <br/>
                         {% endif %}
                         {% if answers[i][0][2].response %}
-                            <span style="background-color: #dff0d8; color: #3c763d;"><strong>{{ answers[i][0][2].answer }}</strong> </span> <br/>
+                            <span style="background-color: #dff0d8; color: #3c763d;"><strong>{{ answers[i][0][2].answer }}</strong> </span>
+                            <br/>
                         {% else %}
                             {{ answers[i][0][2].answer }} <br/>
                         {% endif %}
@@ -68,13 +71,12 @@
     {% endfor %}
     <div class="row">
         <div class="col-sm-8 col-md-offset-2" style="text-align: right">
-        <a href="/test" class="btn btn-success">Try Again</a>
-            </div>
-
+            <a href="/test" class="btn btn-success">Try Again</a>
+        </div>
     </div>
-
-</div>
-
+    <div class="row">
+        <footer class="modal-footer" style="margin-top: 20px;"></footer>
+    </div>
 </div>
 <script src="../static/js/jquery-2.1.4.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
