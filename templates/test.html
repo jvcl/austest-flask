@@ -6,9 +6,32 @@
     <title></title>
 </head>
 <body>
+
+<!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">AusTest</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/test">Test</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
 <div class="container">
     <div class="jumbotron">
-        <h1>Hello</h1>
+        <h2 style="text-align: center;">Australian Citizenship Test</h2>
     </div>
     <form method="post" action="/test">
         {% set counter = 0 %}
@@ -39,7 +62,7 @@
         {% endfor %}
         <div class="row">
             <div class="col-sm-8 col-md-offset-2" style="text-align: right">
-                <input type="submit" value="submit" class="btn btn-success">
+                <input type="submit" value="Get Score" class="btn btn-success">
             </div>
         </div>
     </form>
@@ -47,8 +70,6 @@
         <footer class="modal-footer" style="margin-top: 20px;"></footer>
     </div>
 </div>
-
-
 <script src="../static/js/jquery-2.1.4.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
 </body>

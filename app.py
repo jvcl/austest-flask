@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
-
+Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
@@ -39,8 +40,7 @@ db.create_all()
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
-
+    return render_template('index.html')
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
