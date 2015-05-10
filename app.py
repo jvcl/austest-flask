@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
+from flask.ext import restful
 
 app = Flask(__name__)
 Bootstrap(app)
+api = restful.Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
